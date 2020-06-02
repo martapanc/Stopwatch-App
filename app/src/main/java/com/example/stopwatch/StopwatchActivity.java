@@ -44,8 +44,23 @@ public class StopwatchActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        wasRunning = running;
+        running = false;
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
+        if (wasRunning) {
+            running = true;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         if (wasRunning) {
             running = true;
         }
